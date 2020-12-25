@@ -1,0 +1,65 @@
+﻿@using Web.Models
+@{
+    var db = new WebDatPhongEntities();
+    var loaiPhongs = db.LoaiPhongs.ToList();
+}
+<!-- Home -->
+
+<div class="home">
+    <div class="home_slider_container">
+        <div class="owl-carousel owl-theme home_slider">
+
+            <!-- Slide -->
+            <div class="slide">
+                <div class="background_image" style="background-image:url(/Content/images/luxurynt1.jpg)"></div>
+                <div class="home_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="home_content text-center">
+                                    <div class="home_title">THE FRINGE</div>
+                                    <div class="booking_form_container">
+                                        <form action="/Booking/Index" class="booking_form" method="post">
+                                            <div class="d-flex flex-xl-row flex-column align-items-start justify-content-start">
+                                                <div class="booking_input_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                                                    <div><input name="ngayden" type="text" class="datepicker booking_input booking_select booking_input_a booking_in" placeholder="Ngày đến" required="required"></div>
+                                                    <div><input name="ngaydi" type="text" class="datepicker booking_input booking_select booking_input_a booking_out" placeholder="Ngày đi" required="required"></div>
+                                                    <div>
+                                                        <select name="loaiphong"  class="booking_input booking_select booking_input_b" required="required">
+                                                            <option value="">Loại phòng</option>
+                                                            @foreach (var item in loaiPhongs)
+                                                            {
+                                                                <option value="@item.MaLoaiPhong">@item.TenLoaiPhong</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div><input name="songuoi" type="number" class="booking_input booking_select booking_input_b" placeholder="Số người" required="required"></div>
+                                                    <div><input name="sophong" type="number" class="booking_input booking_select booking_input_b" placeholder="Số phòng" required="required"></div>
+
+                                                </div>
+                                                <div><button class="booking_button trans_200">Đặt phòng</button></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Home Slider Dots -->
+        <div class="home_slider_dots_container">
+            <div class="home_slider_dots">
+                <ul id="home_slider_custom_dots" class="home_slider_custom_dots d-flex flex-row align-items-start justify-content-start">
+                    <li class="home_slider_custom_dot active"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Features -->

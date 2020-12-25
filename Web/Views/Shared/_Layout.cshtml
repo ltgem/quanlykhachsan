@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>KHÁCH SẠN THE FRINGE</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="The River template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/Content/styles/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="/Content/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/Content/plugins/OwlCarousel2-2.3.4/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/Content/plugins/OwlCarousel2-2.3.4/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="/Content/plugins/OwlCarousel2-2.3.4/animate.css">
+    <link href="/Content/plugins/jquery-datepicker/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="/Content/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/Content/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="/Content/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/Content/styles/contact.css">
+    <link rel="stylesheet" type="text/css" href="/Content/styles/contact_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/Content/styles/about.css">
+    <link rel="stylesheet" type="text/css" href="/Content/styles/about_responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/styles/blog.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/styles/blog_responsive.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/styles/booking.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/styles/booking_responsive.css" />
+</head>
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                <div class="logo"><a href="/">THE FRINGE</a></div>
+                <div class="ml-auto d-flex flex-row align-items-center justify-content-start">
+                    <nav class="main_nav">
+                        <ul class="d-flex flex-row align-items-start justify-content-start">
+                            <li class="@ViewBag.Home"><a href="/">Trang chủ</a></li>
+                            <li class="@ViewBag.About"><a href="/home/about">Giới thiệu</a></li>
+                            <li class="@ViewBag.Rooms"><a href="/rooms">Phòng</a></li>
+                            <li class="@ViewBag.News"><a href="/news">Tin tức</a></li>
+                            <li class="@ViewBag.Contact"><a href="/home/contact">Liên hệ</a></li>
+                        </ul>
+                    </nav>
+                    <div class="book_button"><a href="/booking">Đặt phòng</a></div>
+                    <div class="header_phone d-flex flex-row align-items-center justify-content-center">
+                        @*<img src="/Content/images/phone.png" alt="">*@
+                        <a href="/Admin/User/Index"><span>Đăng nhập</span></a>
+                    </div>
+
+                    <!-- Hamburger Menu -->
+                    <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu trans_400 d-flex flex-column align-items-end justify-content-start">
+            <div class="menu_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+            <div class="menu_content">
+                <nav class="menu_nav text-right">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/home/about">Giới thiệu</a></li>
+                        <li><a href="#">Rooms</a></li>
+                        <li><a href="/news">Tin tức</a></li>
+                        <li><a href="/home/contact">Liên hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="menu_extra">
+                <div class="menu_book text-right"><a href="#">Book online</a></div>
+                <div class="menu_phone d-flex flex-row align-items-center justify-content-center">
+                    <img src="/Content/images/phone-2.png" alt="">
+                    <span>0327 038 709</span>
+                </div>
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <!-- Footer -->
+
+        <footer class="footer">
+            <div class="footer_content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="footer_logo_container text-center">
+                                <div class="footer_logo">
+                                    <a href="/"></a>
+                                    <div>The Fringe</div>
+                                    <div>The Fringe Hotel</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row footer_row">
+
+                        <!-- Address -->
+                        <div class="col-lg-4">
+                            <div class="footer_title">Địa chỉ</div>
+                            <div class="footer_list">
+                                <ul>
+                                    <li>56, Tổ 3, ấp Hòa Mỹ, Xã Hòa An, TPCL, Đồng Tháp, Việt Nam</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Reservations -->
+                        <div class="col-lg-4">
+                            <div class="footer_title">Thông tin</div>
+                            <div class="footer_list">
+                                <ul>
+                                    <li>Tel: +(84 18) 8903 2251 </li>
+                                    <li>Fax: +(84 32) 7038 709</li>
+                                    <li>Email: giau3254@gmail.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Footer images -->
+                        <div class="col-lg-4">
+                            <div class="certificates d-flex flex-row align-items-start justify-content-lg-between justify-content-start flex-lg-nowrap flex-wrap">
+                                <div class="cert"><img src="/Content/images/luxury1.jpg" alt=""></div>
+                                <div class="cert"><img src="/Content/images/luxury2.jpg" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> By Lê Thị Giàu Em + Trần Hữu Nghĩa.
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </div>
+        </footer>
+    </div>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Content/styles/bootstrap-4.1.2/popper.js"></script>
+    <script src="/Content/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+    <script src="/Content/plugins/greensock/TweenMax.min.js"></script>
+    <script src="/Content/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="/Content/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="/Content/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="/Content/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="/Content/plugins/OwlCarousel2-2.3.4/owl.carousel.js"></script>
+    <script src="/Content/plugins/easing/easing.js"></script>
+    <script src="/Content/plugins/progressbar/progressbar.min.js"></script>
+    <script src="/Content/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="/Content/plugins/jquery-datepicker/jquery-ui.js"></script>
+    <script src="/Content/plugins/colorbox/jquery.colorbox-min.js"></script>
+    <script src="/Content/js/custom.js"></script>
+    @*<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyB2sl3FBhhDw2JFbKXBQkl2qQP9bzr_FVA"></script>*@
+    <script src="/Content/js/contact.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

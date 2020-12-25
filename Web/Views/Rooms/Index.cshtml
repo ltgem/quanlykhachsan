@@ -1,0 +1,35 @@
+﻿@model List<Web.Models.LoaiPhong>
+@{
+    ViewBag.Rooms = "active";
+}
+
+@Html.Partial("_Banner")
+@foreach (var item in Model)
+{
+    <div class="special">
+        <div class="container" style="background-image:url(@item.HinhAnh); background-position: center; background-repeat: no-repeat; background-size: cover; padding-top: 100px; padding-bottom: 100px;">
+            <div class="row">
+                <div class="col-xl-6 offset-xl-6 col-lg-8 offset-lg-2">
+                    <div class="special_content">
+                        <div class="details_title">@item.TenLoaiPhong</div>
+                        <div class="details_list">
+                            <ul>
+                                <li>Giá: @item.DonGia.Value.ToString("N0") (VNĐ)</li>
+                                <li>Số giường: @item.SoGiuong</li>
+                                <li>Mô tả: @item.MoTa</li>
+                            </ul>
+                        </div>
+                        <div class="details_long_list">
+                            <ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+                                @foreach (var ti in item.TienNghis)
+                                {
+                                    <li>@ti.TenTienNghi</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

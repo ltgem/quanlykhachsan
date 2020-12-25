@@ -1,0 +1,108 @@
+﻿@using Web.Models
+@{
+    ViewBag.Home = "active";
+
+    var db = new WebDatPhongEntities();
+    var news = db.TinTucs.OrderByDescending(x => x.NgayDang).Take(6).ToList();
+}
+
+@Html.Partial("_Banner")
+
+<div class="features">
+    <div class="container">
+        <div class="row">
+
+            <!-- Icon Box -->
+            <div class="col-lg-4 icon_box_col">
+                <div class="icon_box d-flex flex-column align-items-center justify-content-start text-center">
+                    <div class="icon_box_icon"><img src="/Content/images/icon_1.svg" class="svg" alt="https://www.flaticon.com/authors/monkik"></div>
+                    <div class="icon_box_title"><h2>Khu nghỉ mát đẹp</h2></div>
+                    <div class="icon_box_text">
+                        <p>Tọa lạc ngay trung tâm thương mại & du lịch, trên con đường biển nổi tiếng của thành phố. Chỉ cần vừa bước chân ra khỏi khách sạn đã có thể tản bộ dọc theo bờ cát dài trắng mịn.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Box -->
+            <div class="col-lg-4 icon_box_col">
+                <div class="icon_box d-flex flex-column align-items-center justify-content-start text-center">
+                    <div class="icon_box_icon"><img src="/Content/images/icon_2.svg" class="svg" alt="https://www.flaticon.com/authors/monkik"></div>
+                    <div class="icon_box_title"><h2>Bể bơi vô cực</h2></div>
+                    <div class="icon_box_text">
+                        <p>Khác sạn có bể bơi vô cực tọa lạc ở tầng cao nhất, với view nhìn ra biển đem lại cảm giác tuyệt vời mà khó có nơi nào mang lại cho quý khách. Với diện tích rộng đảm bảo không gian thoải mái.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Box -->
+            <div class="col-lg-4 icon_box_col">
+                <div class="icon_box d-flex flex-column align-items-center justify-content-start text-center">
+                    <div class="icon_box_icon"><img src="/Content/images/icon_3.svg" class="svg" alt="https://www.flaticon.com/authors/monkik"></div>
+                    <div class="icon_box_title"><h2>Phòng sang trọng</h2></div>
+                    <div class="icon_box_text">
+                        <p>Nơi nghĩ dưỡng lí tưởng và thân thiện với 111 phòng ngủ sang trọng, hiện đại theo tiêu chuẩn quốc tế sẽ mang đến cho quý khách những trãi nghiệm tuyệt vời của thiên đường du lịch.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Gallery -->
+
+<div class="gallery">
+    <div class="gallery_slider_container">
+        <div class="owl-carousel owl-theme gallery_slider">
+
+            <!-- Slide -->
+            <div class="gallery_item">
+                <div class="background_image" style="background-image:url(/Content/images/gallery_1.jpg)"></div>
+                <a class="colorbox" href="/Content/images/gallery_1.jpg"></a>
+            </div>
+
+            <!-- Slide -->
+            <div class="gallery_item">
+                <div class="background_image" style="background-image:url(/Content/images/gallery_2.jpg)"></div>
+                <a class="colorbox" href="/Content/images/gallery_2.jpg"></a>
+            </div>
+
+            <!-- Slide -->
+            <div class="gallery_item">
+                <div class="background_image" style="background-image:url(/Content/images/gallery_3.jpg)"></div>
+                <a class="colorbox" href="/Content/images/gallery_3.jpg"></a>
+            </div>
+
+            <!-- Slide -->
+            <div class="gallery_item">
+                <div class="background_image" style="background-image:url(/Content/images/gallery_4.jpg)"></div>
+                <a class="colorbox" href="/Content/images/gallery_4.jpg"></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Blog -->
+
+<div class="blog">
+
+    <!-- Blog Slider -->
+    <div class="blog_slider_container">
+        <div class="owl-carousel owl-theme blog_slider">
+
+            @foreach (var item in news)
+            {
+
+                <!-- Slide -->
+                <div class="blog_slide">
+                    <div class="background_image" style="background-image: url(@item.HinhAnh)"></div>
+                    <div class="blog_content">
+                        <div class="blog_date"><a href="/news/detail/@item.MaTinTuc">@item.NgayDang.Value.ToString("dd-MM-yyyy")</a></div>
+                        <div class="blog_title"><a href="/news/detail/@item.MaTinTuc">@item.TieuDe</a></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

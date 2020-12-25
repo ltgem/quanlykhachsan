@@ -1,0 +1,52 @@
+﻿@model List<KhachSan>
+@{
+    ViewBag.Title = "Danh sách Khách sạn";
+    ViewBag.Controller = "Khách sạn";
+    ViewBag.General = "active";
+    ViewBag.Hotel = "active";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Id = "view-null";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title</h3>
+                <a href="/Admin/Hotel/Add" class="btn btn-success pull-right">Thêm</a>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Tên khách sạn</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Địa chỉ</th>
+                            <th class="w100">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@item.HinhAnh" width="100" />
+                                </td>
+                                <td>@item.TenKhachSan</td>
+                                <td>@item.Email</td>
+                                <td>@item.SDT</td>
+                                <td>@item.DiaChi</td>
+                                <td>
+                                    <a href="/Admin/Hotel/Edit/@item.MaKhachSan" class="btn btn-info btn-sm">Sửa</a>
+                                    <a href="/Admin/Hotel/Delete/@item.MaKhachSan" onclick="return confirm('Bạn chắc chắn muốn xóa mục đã chọn?')" class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

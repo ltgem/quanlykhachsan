@@ -1,0 +1,38 @@
+﻿@using Web.Models
+@Html.Partial("_Banner")
+@{
+    var db = new WebDatPhongEntities();
+    var tintucs = db.TinTucs.OrderByDescending(x => x.NgayDang).Take(5).ToList();
+}
+
+<div class="blog">
+    <div class="container">
+        <h2>Đặt phòng</h2>
+        <hr />
+        <div class="row">
+            <!-- Blog Posts -->
+            <div class="col-lg-9">
+                <div class="blog_posts">
+                    <h3>Cám ơn bạn đã đặt phòng ở khách sạn chúng tôi! Chúng tôi sẽ sớm gọi lại cho bạn để xác nhận đặt phòng!</h3>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <div class="recent_posts">
+                        <div class="sidebar_title"><h4>Tin mới</h4></div>
+                        <div class="sidebar_list">
+                            <ul>
+                                @foreach (var item in tintucs)
+                                {
+                                    <li><a href="/news/detail/@item.MaTinTuc">@item.TieuDe</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

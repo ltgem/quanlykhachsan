@@ -1,0 +1,175 @@
+﻿@using Web.Models
+@Html.Partial("_Banner")
+@{
+    var db = new WebDatPhongEntities();
+    var tintucs = db.TinTucs.OrderByDescending(x => x.NgayDang).Take(5).ToList();
+
+    var dondatphong = new DonDatPhong();
+    if (Session["DonDatPhong"] != null)
+    {
+        dondatphong = Session["DonDatPhong"] as DonDatPhong;
+    }
+    else
+    {
+        dondatphong = null;
+    }
+
+    var chitetdatphongs = new List<ChiTietDonDatPhong>();
+    if (Session["ChiTietDonDatPhong"] != null)
+    {
+        chitetdatphongs = Session["ChiTietDonDatPhong"] as List<ChiTietDonDatPhong>;
+    }
+
+    var loaiPhongs = db.LoaiPhongs.ToList();
+
+    var dondatphongA = new DonDatPhong();
+    if (Session["DonDatPhongA"] != null)
+    {
+        dondatphongA = Session["DonDatPhongA"] as DonDatPhong;
+    }
+}
+
+<div class="blog">
+    <div class="container">
+        <h2>Đặt phòng</h2>
+        <hr />
+        @if (TempData["mess"] != null)
+        {
+            <p style="color: green">@TempData["mess"]</p>
+        }
+        <div class="row">
+            <!-- Blog Posts -->
+            <div class="col-lg-9">
+                <div class="blog_posts">
+                    <form action="/booking/add" method="post">
+                        <div class="form-group form-inline">
+                            <div class="col-md-3">
+                                <select name="loaiphong" class="form-control" required="required">
+                                    <option value="">Loại phòng</option>
+                                    @foreach (var item in loaiPhongs)
+                                    {
+                                        <option value="@item.MaLoaiPhong">@item.TenLoaiPhong</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input name="songuoi" type="text" class="form-control" placeholder="Số người" required="required">
+                            </div>
+                            <div class="col-md-3">
+                                <input name="sophong" type="text" class="form-control" placeholder="Số phòng" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Thêm</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <p>Chi tiết đặt phòng</p>
+                    <table class="table">
+                        <tr>
+                            <th>Loại phòng</th>
+                            <th>Số phòng</th>
+                            <th>Số người</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in chitetdatphongs)
+                        {
+                            <tr>
+                                <td>@item.LoaiPhong.TenLoaiPhong</td>
+                                <td>@item.SoPhong</td>
+                                <td>@item.SoNguoi</td>
+                                <td><a href="/booking/delete/@item.MaLoaiPhong" onclick="return confirm('Bạn chắc chắn muốn xóa mục đã chọn?')" class="btn btn-default">Xóa</a></td>
+                            </tr>
+                        }
+                        @if (chitetdatphongs.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="4">Chưa có dữ liệu</td>
+                            </tr>
+                        }
+                    </table>
+                    <hr />
+                    <form action="/booking/send" method="post">
+                        @if (dondatphong == null)
+                        {
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Ngày đến:</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control datepicker" name="ngayden" required="required" value="@Html.Raw(dondatphongA.NgayDen==null?"":dondatphongA.NgayDen.Value.ToString("MM/dd/yyyy"))">
+                                </div>
+
+                                <label class="control-label col-sm-2">Ngày đi:</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control datepicker" name="ngaydi" required="required" value="@Html.Raw(dondatphongA.NgayDi==null?"":dondatphongA.NgayDi.Value.ToString("MM/dd/yyyy"))">
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Ngày đến:</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control datepicker" name="ngayden" required="required" value="@dondatphong.NgayDen.Value.ToString("MM/dd/yyyy")">
+                                </div>
+
+                                <label class="control-label col-sm-2">Ngày đi:</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control datepicker" name="ngaydi" required="required" value="@dondatphong.NgayDi.Value.ToString("MM/dd/yyyy")">
+                                </div>
+                            </div>
+                        }
+                        <p>Thông tin người đặt phòng</p>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Họ tên:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="hoten" required="required" value="@dondatphongA.HoTen">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">SĐT:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="sdt" required="required" value="@dondatphongA.SoDienThoai">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="email" value="@dondatphongA.Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Chi chú:</label>
+                            <div class="col-sm-10">
+                                <textarea rows="4" class="form-control" name="ghichu">@dondatphongA.GhiChu</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Đặt phòng</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <div class="recent_posts">
+                        <div class="sidebar_title"><h4>Tin mới</h4></div>
+                        <div class="sidebar_list">
+                            <ul>
+                                @foreach (var item in tintucs)
+                                {
+                                    <li><a href="/news/detail/@item.MaTinTuc">@item.TieuDe</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
